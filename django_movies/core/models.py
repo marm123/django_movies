@@ -4,7 +4,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 class Movie(models.Model):
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=120)
     rating = models.IntegerField(
         null=True, validators=[MaxValueValidator(10), MinValueValidator(1)]
     )
