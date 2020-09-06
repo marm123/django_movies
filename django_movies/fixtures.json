@@ -1,0 +1,173 @@
+[
+  {
+    "model": "core.genre",
+    "pk": 1,
+    "fields": {
+      "name": "commmmmmedy",
+      "age_limit": 7
+    }
+  },
+  {
+    "model": "core.genre",
+    "pk": 2,
+    "fields": {
+      "name": "horror",
+      "age_limit": 18
+    }
+  },
+  {
+    "model": "core.genre",
+    "pk": 3,
+    "fields": {
+      "name": "action",
+      "age_limit": 16
+    }
+  },
+  {
+    "model": "core.genre",
+    "pk": 4,
+    "fields": {
+      "name": "gore",
+      "age_limit": 21
+    }
+  },
+  {
+    "model": "core.genre",
+    "pk": 5,
+    "fields": {
+      "name": "sci-fi",
+      "age_limit": 13
+    }
+  },
+  {
+    "model": "core.director",
+    "pk": 1,
+    "fields": {
+      "name": "Jan",
+      "surname": "Kowalski"
+    }
+  },
+  {
+    "model": "core.director",
+    "pk": 2,
+    "fields": {
+      "name": "Jan",
+      "surname": "Nowak"
+    }
+  },
+  {
+    "model": "core.director",
+    "pk": 3,
+    "fields": {
+      "name": "Anna",
+      "surname": "Kowalska"
+    }
+  },
+  {
+    "model": "core.director",
+    "pk": 4,
+    "fields": {
+      "name": "Maria",
+      "surname": "Lewandowska"
+    }
+  },
+  {
+    "model": "core.director",
+    "pk": 5,
+    "fields": {
+      "name": "Karol",
+      "surname": "Wisniewski"
+    }
+  },
+  {
+    "model": "core.movie",
+    "pk": 1,
+    "fields": {
+      "title": "Django",
+      "rating": 9,
+      "released": "2020-05-06",
+      "description": "P",
+      "created": "2020-09-05T12:33:52.164Z",
+      "genre": 1,
+      "director": 1
+    }
+  },
+  {
+    "model": "core.movie",
+    "pk": 2,
+    "fields": {
+      "title": "Iron Man",
+      "rating": 9,
+      "released": "2020-05-07",
+      "description": "Y",
+      "created": "2020-09-05T13:33:52.164Z",
+      "genre": 2,
+      "director": 2
+    }
+  },
+  {
+    "model": "core.movie",
+    "pk": 3,
+    "fields": {
+      "title": "Krzyzacy",
+      "rating": 7,
+      "released": "2020-05-08",
+      "description": "T",
+      "created": "2020-09-05T14:33:52.164Z",
+      "genre": 3,
+      "director": 3
+    }
+  },
+  {
+    "model": "core.movie",
+    "pk": 4,
+    "fields": {
+      "title": "Star Wars",
+      "rating": 6,
+      "released": "2020-11-11",
+      "description": "H",
+      "created": "2020-09-05T13:06:54.969Z",
+      "genre": 4,
+      "director": 4
+    }
+  },
+  {
+    "model": "core.movie",
+    "pk": 5,
+    "fields": {
+      "title": "Avengers",
+      "rating": 5,
+      "released": "2020-03-05",
+      "description": "O",
+      "created": "2020-09-05T13:07:36.186Z",
+      "genre": 5,
+      "director": 5
+    }
+  },
+  {
+    "model": "core.movie",
+    "pk": 8,
+    "fields": {
+      "title": "Matrix",
+      "rating": 9,
+      "released": "2020-09-19",
+      "description": "",
+      "created": "2020-09-06T09:30:04.710Z",
+      "genre": 5,
+      "director": 1
+    }
+  },
+  {
+    "model": "core.movie",
+    "pk": 9,
+    "fields": {
+      "title": "Ogniem i Mieczem",
+      "rating": 7,
+      "released": "2020-05-16",
+      "description": null,
+      "created": "2020-09-06T13:06:54.969Z",
+      "genre": 3,
+      "director": 3
+    }
+  }
+]

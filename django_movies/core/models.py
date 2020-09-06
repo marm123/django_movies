@@ -11,6 +11,13 @@ AGE_LIMIT_CHOICES = [
 ]
 
 
+class Country(models.Model):
+    country = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):
+        return self.country
+
+
 class Genre(models.Model):
     name = models.CharField(max_length=20, unique=True)
 
@@ -46,6 +53,7 @@ class Movie(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     genre = models.ForeignKey(Genre, null=True, on_delete=models.SET_NULL)
     director = models.ForeignKey(Director, null=True, on_delete=models.SET_NULL)
+    countries = models.ManyToManyField(Country, related_name='movies')
 
     class Meta:
         unique_together = ('title', 'released', 'director')
