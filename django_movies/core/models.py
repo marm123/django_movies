@@ -14,6 +14,9 @@ AGE_LIMIT_CHOICES = [
 class Country(models.Model):
     country = models.CharField(max_length=50, unique=True)
 
+    class Meta:
+        ordering = ('country',)
+
     def __str__(self):
         return self.country
 

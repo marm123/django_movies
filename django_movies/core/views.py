@@ -1,8 +1,16 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+# from django.http import HttpResponse
+from django.shortcuts import render
 
+from core.models import Movie
 
-# Create your views here.
 
 def hello(request):
-    return HttpResponse('Hello World!')
+    return render(
+        request,
+        template_name='hello.html',
+        context={'adjectives': ['beautiful', 'cruel', 'wonderful']}
+    )
+
+# def hello(request):
+#     return HttpResponse('Hello World!')
