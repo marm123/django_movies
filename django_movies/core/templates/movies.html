@@ -3,8 +3,8 @@
 {% block content %}
     <h1>Welcome to Django Movies!</h1>
     <ul>
-            {% for movie in movies %}
-                {% if movie.genre.age_limit != limits.adults %}
+            {% for movie in object_list %}
+                {% if movie.genre.age_limit == limits.kids %}
                     <li>
                         {{ movie.title }} ({{ movie.released.year }}) by {{ movie.director }}, genre: {{ movie.genre.name }}
                     </li>
