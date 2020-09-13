@@ -1,10 +1,11 @@
 # from django.http import HttpResponse
 # from django import views
 # from django.views.generic import TemplateView
+import json
 import logging
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import FormView, ListView, CreateView, UpdateView
+from django.views.generic import FormView, ListView, CreateView, UpdateView, DeleteView
 
 from core.models import Movie, AGE_LIMIT_CHOICES
 from core.forms import MovieForm
@@ -22,6 +23,11 @@ class MovieCreateView(CreateView):
     form_class = MovieForm
     success_url = reverse_lazy('index')
 
+    def post(self, request, *args, **kwargs):
+        # print(request.__dict__['_post']['title'])
+        LOGGER.info(f"Added new movie: {self.request.POST['title']}")
+        return super().post(request, *args, **kwargs)
+
     def form_invalid(self, form):
         LOGGER.warning('Invalid data provided.')
         return super().form_invalid(form)
@@ -29,12 +35,19 @@ class MovieCreateView(CreateView):
 
 class MovieUpdateView(UpdateView):
     template_name = 'form.html'
+    model = Movie
     form_class = MovieForm
     success_url = reverse_lazy('index')
 
     def form_invalid(self, form):
         LOGGER.warning('Invalid data provided.')
         return super().form_invalid(form)
+
+
+class MovieDeleteView(DeleteView):
+    template_name = 'movie_confirm_delete.html'
+    model = Movie
+    success_url = reverse_lazy('index')
 
 
 class MovieView(ListView):
