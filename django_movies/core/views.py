@@ -5,7 +5,7 @@ import json
 import logging
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import FormView, ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import FormView, ListView, CreateView, UpdateView, DeleteView, DetailView
 
 from core.models import Movie, AGE_LIMIT_CHOICES
 from core.forms import MovieForm
@@ -21,10 +21,9 @@ LOGGER = logging.getLogger(__name__)
 class MovieCreateView(CreateView):
     template_name = 'form.html'
     form_class = MovieForm
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('core:movie_list')
 
     def post(self, request, *args, **kwargs):
-        # print(request.__dict__['_post']['title'])
         LOGGER.info(f"Added new movie: {self.request.POST['title']}")
         return super().post(request, *args, **kwargs)
 
@@ -37,7 +36,7 @@ class MovieUpdateView(UpdateView):
     template_name = 'form.html'
     model = Movie
     form_class = MovieForm
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('core:movie_list')
 
     def form_invalid(self, form):
         LOGGER.warning('Invalid data provided.')
@@ -47,18 +46,31 @@ class MovieUpdateView(UpdateView):
 class MovieDeleteView(DeleteView):
     template_name = 'movie_confirm_delete.html'
     model = Movie
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('core:movie_list')
 
 
-class MovieView(ListView):
-    template_name = 'movies.html'
+class MovieListView(ListView):
+    template_name = 'movie_list.html'
     model = Movie
 
-    def get_context_data(self, *args, object_list=None, **kwargs):
-        context = super().get_context_data(*args, object_list=None, **kwargs)
-        context['limits'] = AGE_LIMIT_CHOICES
-        return context
 
+class MovieDetailView(DetailView):
+    template_name = 'movie_detail.html'
+    model = Movie
+
+
+class IndexView(MovieListView):
+    template_name = 'index.html'
+
+
+# class MovieView(ListView):
+#     template_name = 'movies.html'
+#     model = Movie
+#
+#     def get_context_data(self, *args, object_list=None, **kwargs):
+#         context = super().get_context_data(*args, object_list=None, **kwargs)
+#         context['limits'] = AGE_LIMIT_CHOICES
+#         return context
 
 # class MovieView(TemplateView):
 #     template_name = 'movies.html'
