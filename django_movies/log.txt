@@ -1,1 +1,7 @@
-WARNING:django.request:Not Found: /movie/create
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /core/movie/detail
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /core/movie/detail/
+WARNING:django.request:Not Found: /core/movie/detail/7
+WARNING:django.request:Not Found: /favicon.ico
