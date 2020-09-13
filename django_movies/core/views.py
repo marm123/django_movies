@@ -4,16 +4,30 @@
 import logging
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import FormView, ListView, CreateView
+from django.views.generic import FormView, ListView, CreateView, UpdateView
 
 from core.models import Movie, AGE_LIMIT_CHOICES
 from core.forms import MovieForm
 
+logging.basicConfig(
+    filename='log.txt',
+    filemode='w',
+    level=logging.INFO
+)
 LOGGER = logging.getLogger(__name__)
 
 
 class MovieCreateView(CreateView):
-    title = 'Add Movie'
+    template_name = 'form.html'
+    form_class = MovieForm
+    success_url = reverse_lazy('index')
+
+    def form_invalid(self, form):
+        LOGGER.warning('Invalid data provided.')
+        return super().form_invalid(form)
+
+
+class MovieUpdateView(UpdateView):
     template_name = 'form.html'
     form_class = MovieForm
     success_url = reverse_lazy('index')
@@ -53,6 +67,7 @@ class MovieView(ListView):
 
 
 def hello(request):
+    LOGGER.info('\nWreszcie cos dziala\n')
     return render(
         request,
         template_name='hello.html',
