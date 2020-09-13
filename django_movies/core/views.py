@@ -1,10 +1,26 @@
 # from django.http import HttpResponse
 # from django import views
 # from django.views.generic import TemplateView
+import logging
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.urls import reverse_lazy
+from django.views.generic import FormView, ListView, CreateView
 
 from core.models import Movie, AGE_LIMIT_CHOICES
+from core.forms import MovieForm
+
+LOGGER = logging.getLogger(__name__)
+
+
+class MovieCreateView(CreateView):
+    title = 'Add Movie'
+    template_name = 'form.html'
+    form_class = MovieForm
+    success_url = reverse_lazy('index')
+
+    def form_invalid(self, form):
+        LOGGER.warning('Invalid data provided.')
+        return super().form_invalid(form)
 
 
 class MovieView(ListView):
