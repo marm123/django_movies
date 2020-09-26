@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from django.contrib.auth.views import LoginView
 
-# Create your views here.
+from accounts.forms import SubmittableAuthenticationForm
+
+
+class SubmittableLoginView(LoginView):
+    form_class = SubmittableAuthenticationForm
+    template_name = 'form.html'
