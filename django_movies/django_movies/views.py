@@ -1,4 +1,4 @@
-from django_movies.core.views import MovieListView
+from core.views import MovieListView
 
 
 class IndexView(MovieListView):
