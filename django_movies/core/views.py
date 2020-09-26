@@ -1,8 +1,8 @@
 # from django.http import HttpResponse
-# from django import views
 # from django.views.generic import TemplateView
-import json
 import logging
+from django import views
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import FormView, ListView, CreateView, UpdateView, DeleteView, DetailView
@@ -18,7 +18,12 @@ logging.basicConfig(
 LOGGER = logging.getLogger(__name__)
 
 
-class MovieCreateView(CreateView):
+class StaffRequiredMixin(UserPassesTestMixin):
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class MovieCreateView(LoginRequiredMixin, CreateView):
     template_name = 'form.html'
     form_class = MovieForm
     success_url = reverse_lazy('core:movie_list')
@@ -32,7 +37,7 @@ class MovieCreateView(CreateView):
         return super().form_invalid(form)
 
 
-class MovieUpdateView(UpdateView):
+class MovieUpdateView(StaffRequiredMixin, LoginRequiredMixin, UpdateView):
     template_name = 'form.html'
     model = Movie
     form_class = MovieForm
@@ -42,8 +47,12 @@ class MovieUpdateView(UpdateView):
         LOGGER.warning('Invalid data provided.')
         return super().form_invalid(form)
 
+    def test_func(self):
+        super().test_func()
+        return self.request.user.is_superuser
 
-class MovieDeleteView(DeleteView):
+
+class MovieDeleteView(StaffRequiredMixin, LoginRequiredMixin, DeleteView):
     template_name = 'movie_confirm_delete.html'
     model = Movie
     success_url = reverse_lazy('core:movie_list')
