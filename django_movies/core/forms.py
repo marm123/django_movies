@@ -61,6 +61,7 @@ class MovieForm(forms.ModelForm):
     title = forms.CharField(validators=[capitalized_validator])
     rating = forms.IntegerField(min_value=1, max_value=10)
     released = PastMonthField()
+
     # genre = forms.ModelChoiceField(queryset=Genre.objects.all())
     # description = forms.CharField(widget=forms.Textarea, required=False)
 
@@ -76,7 +77,6 @@ class MovieForm(forms.ModelForm):
             Submit('submit', 'Submit')
         )
 
-
     def clean_description(self):
         initial = self.cleaned_data['description']
         sentences = re.sub(r'\s*\.\s*', '.', initial).split('.')
@@ -86,5 +86,5 @@ class MovieForm(forms.ModelForm):
     def clean(self):
         result = super().clean()
         if result['genre'].name == 'comedy' and result['rating'] >= 5:
-            raise ValidationError('The best comedy ins worth a 4')
+            raise ValidationError('The best comedy is worth a 4')
         return result

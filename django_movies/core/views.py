@@ -59,8 +59,6 @@ class MovieDetailView(DetailView):
     model = Movie
 
 
-class IndexView(MovieListView):
-    template_name = 'index.html'
 
 
 # class MovieView(ListView):
