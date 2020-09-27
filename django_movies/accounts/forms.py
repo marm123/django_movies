@@ -8,8 +8,6 @@ from django.forms import CharField, Form, Textarea, IntegerField
 
 from accounts.models import Profile
 
-# from accounts.models import Profile
-
 
 class SubmittableForm(Form):
     def __init__(self, *args, **kwargs):
@@ -28,7 +26,7 @@ class SubmittablePasswordChangeForm(SubmittableForm, PasswordChangeForm):
 
 class SignUpForm(SubmittableForm, UserCreationForm):
     shoe_size = IntegerField(
-        label = 'Your shoe size',
+        label='Your shoe size',
         min_value=28, max_value=54
     )
 
