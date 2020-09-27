@@ -22,3 +22,8 @@ class SubmittableAuthenticationForm(SubmittableForm, AuthenticationForm):
 
 class SubmittablePasswordChangeForm(SubmittableForm, PasswordChangeForm):
     pass
+
+
+class SignUpForm(SubmittableForm, UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        fields = ['username', 'first_name']

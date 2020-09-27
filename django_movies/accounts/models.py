@@ -5,4 +5,4 @@ from django.db.models import OneToOneField, Model, IntegerField, CASCADE
 
 class Profile(Model):
     user = OneToOneField(User, on_delete=CASCADE)
-    shoe_size = IntegerField()
+    shoe_size = IntegerField(null=True, blank=True)
